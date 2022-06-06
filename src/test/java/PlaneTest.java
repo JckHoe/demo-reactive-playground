@@ -89,13 +89,13 @@ public class PlaneTest extends BaseTest {
         HangerService hangerService =new HangerService(10, 3);
         List<Plane> planes = new ArrayList<>();
 
-        hangerService.getUsers()
+        hangerService.getPlanes()
                 .invoke(resp -> planes.addAll(resp.getPlanes()))
-                .chain(resp -> hangerService.getUserByCursor(resp.getCursor()))
+                .chain(resp -> hangerService.getPlanesByCursor(resp.getCursor()))
                 .invoke(resp -> planes.addAll(resp.getPlanes()))
-                .chain(resp -> hangerService.getUserByCursor(resp.getCursor()))
+                .chain(resp -> hangerService.getPlanesByCursor(resp.getCursor()))
                 .invoke(resp -> planes.addAll(resp.getPlanes()))
-                .chain(resp -> hangerService.getUserByCursor(resp.getCursor()))
+                .chain(resp -> hangerService.getPlanesByCursor(resp.getCursor()))
                 .invoke(resp -> planes.addAll(resp.getPlanes()))
                 .await().indefinitely();
 

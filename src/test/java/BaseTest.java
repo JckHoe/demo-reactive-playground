@@ -9,10 +9,10 @@ public abstract class BaseTest {
     }
 
     public List<Plane> constructFixedSizeHanger(int size) {
-        List<Plane> users = new ArrayList<>();
+        List<Plane> planes = new ArrayList<>();
         for (int i = size; i > 0; i--) {
-            users.add(new Plane().setName("Aircraft "+i).setLength(i));
+            planes.add(new Plane().setName("Aircraft "+i).setLength(i));
         }
-        return users;
+        return planes;
     }
 }

@@ -17,7 +17,7 @@ public class HangerServiceV2 {
         }
     }
 
-    private HangerResponse retrieveUsers(Integer cursor) {
+    private HangerResponse retrievePlanes(Integer cursor) {
         List<Plane> toReturn = new ArrayList<>();
 
         if (cursor == null) {
@@ -33,20 +33,14 @@ public class HangerServiceV2 {
                 .setCursor(cursor);
     }
 
-    // Return X number of users depending on `limit`.
-    // Retrieve the remaining users by calling getUserByCursor().
-    // Cursor indicate how many users is remaining.
-    public Single<HangerResponse> getUsers() {
-        return Single.just(retrieveUsers(null))
+    public Single<HangerResponse> getPlanes() {
+        return Single.just(retrievePlanes(null))
                 .delay(350, TimeUnit.MILLISECONDS)
                 .doOnSuccess(resp -> log.info("HangerResponse = {}", resp));
     }
 
-    // Return X number of users depending on `limit`.
-    // Subsequent call after first getUsers() is invoked.
-    // Cursor indicate how many users is remaining.
-    public Single<HangerResponse> getUserByCursor(Integer cursor) {
-        return Single.just(retrieveUsers(cursor))
+    public Single<HangerResponse> getPlanesByCursor(Integer cursor) {
+        return Single.just(retrievePlanes(cursor))
                 .delay(350, TimeUnit.MILLISECONDS)
                 .doOnSuccess(resp -> log.info("HangerResponse = {}", resp));
     }

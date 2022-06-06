@@ -18,7 +18,7 @@ public class HangerService {
         }
     }
 
-    private HangerResponse retrieveUsers(Integer cursor) {
+    private HangerResponse retrievePlanes(Integer cursor) {
         List<Plane> planesToReturn = new ArrayList<>();
 
         if (cursor == null) {
@@ -34,16 +34,16 @@ public class HangerService {
                 .setCursor(cursor);
     }
 
-    public Uni<HangerResponse> getUsers() {
-        return Uni.createFrom().item(retrieveUsers(null))
+    public Uni<HangerResponse> getPlanes() {
+        return Uni.createFrom().item(retrievePlanes(null))
                 .onItem()
                 .delayIt()
                 .by(Duration.ofMillis(350))
                 .invoke(resp -> log.info("HangerResponse = {}", resp));
     }
 
-    public Uni<HangerResponse> getUserByCursor(Integer cursor) {
-        return Uni.createFrom().item(retrieveUsers(cursor))
+    public Uni<HangerResponse> getPlanesByCursor(Integer cursor) {
+        return Uni.createFrom().item(retrievePlanes(cursor))
                 .onItem()
                 .delayIt()
                 .by(Duration.ofMillis(350))
